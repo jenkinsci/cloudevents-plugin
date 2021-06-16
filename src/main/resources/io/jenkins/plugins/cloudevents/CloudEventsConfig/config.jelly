@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+   <f:section title="${%CloudEvents Plugin}">
+    <f:entry title="Configure Event Endpoints" field="endpoints">
+        <f:repeatable var="endpointsList" name="endpoints" add="${%Add Endpoint}" items="${instance.endpoints}">
+            <fieldset>
+
+                    <f:entry field="sinkURL" title="Sink URL" description="Enter the URL of the sink to send events to.">
+                    <f:textbox value="${endpointsList.sinkURL}"/>
+                    </f:entry>
+
+                    <f:entry title="Event" description="Select events for which you want to receive CloudEvents" field="event">
+                       <select class="setting-input" name="event">
+                               <f:option value="all"       selected="${endpointsList.event == 'all'}">All Events</f:option>
+                               <f:option value="queued"    selected="${endpointsList.event == 'queued'}">Job Queued</f:option>
+                               <f:option value="started"   selected="${endpointsList.event == 'started'}">Job Started</f:option>
+                               <f:option value="completed" selected="${endpointsList.event == 'completed'}">Job Completed</f:option>
+                               <f:option value="finalized" selected="${endpointsList.event == 'finalized'}">Job Finalized</f:option>
+                               <f:option value="failed"	selected="${endpointsList.event == 'failed'}">Job Failed</f:option>
+                       </select>
+                    </f:entry>
+
+
+                    <f:repeatableDeleteButton value="${%Delete}" />
+            </fieldset>
+        </f:repeatable>
+    </f:entry>
+   </f:section>
+</j:jelly>

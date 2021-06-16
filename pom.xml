@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>4.12</version>
+        <version>4.16</version>
         <relativePath />
     </parent>
+
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>cloudevents</artifactId>
     <version>${revision}${changelist}</version>
     <packaging>hpi</packaging>
+
     <properties>
-        <revision>1.0</revision>
+        <revision>1.0.0</revision>
         <changelist>-SNAPSHOT</changelist>
-        <jenkins.version>2.235.1</jenkins.version>
+        <jenkins.version>2.277.4</jenkins.version>
         <java.level>8</java.level>
-        <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>    </properties>
+        <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
+    </properties>
+
     <name>CloudEvents Plugin</name>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <description>Emit and Consume CloudEvents in Jenkins.</description>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.235.x</artifactId>
-                <version>16</version>
+                <artifactId>bom-2.277.x</artifactId>
+                <version>26</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -37,14 +45,50 @@
             <url>https://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
-    <!-- If you want this to appear on the plugin site page:
+
     <developers>
       <developer>
-        <id>bhacker</id>
-        <name>Bob Q. Hacker</name>
-        <email>bhacker@nowhere.net</email>
+        <id>ShrutiC-git</id>
+        <name>Shruti Chaturvedi</name>
+        <email>shrutichaturvedi16.sc@gmail.com</email>
       </developer>
-    </developers> -->
+    </developers>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.4.9</version>
+        </dependency>
+
+        <!-- CloudEvents package to create and process CloudEvents and interfaces to deal with protocol and event-format binding -->
+        <dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-core</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-http-basic</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cloudevents</groupId>
+            <artifactId>cloudevents-api</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
+    </dependencies>
 
     <scm>
         <connection>scm:git:git://github.com/${gitHubRepo}.git</connection>
@@ -59,6 +103,7 @@
             <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>repo.jenkins-ci.org</id>

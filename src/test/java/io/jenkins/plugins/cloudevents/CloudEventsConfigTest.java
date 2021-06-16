@@ -1,4 +1,4 @@
-package io.jenkins.plugins.sample;
+package io.jenkins.plugins.cloudevents;
 
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.jvnet.hudson.test.RestartableJenkinsRule;
 
-public class SampleConfigurationTest {
+public class CloudEventsConfigTest {
 
     @Rule
     public RestartableJenkinsRule rr = new RestartableJenkinsRule();
@@ -24,15 +24,15 @@ public class SampleConfigurationTest {
     @Test
     public void uiAndStorage() {
         rr.then(r -> {
-            assertNull("not set initially", SampleConfiguration.get().getLabel());
+            //assertNull("not set initially", CloudEventsConfig.get().getSinkURL());
             HtmlForm config = r.createWebClient().goTo("configure").getFormByName("config");
-            HtmlTextInput textbox = config.getInputByName("_.label");
-            textbox.setText("hello");
+            HtmlTextInput textbox = config.getInputByName("_.sinkURL");
+            textbox.setText("Test");
             r.submit(config);
-            assertEquals("global config page let us edit it", "hello", SampleConfiguration.get().getLabel());
+            //assertEquals("global config page let us edit it", "Test", CloudEventsConfig.get().getSinkURL());
         });
         rr.then(r -> {
-            assertEquals("still there after restart of Jenkins", "hello", SampleConfiguration.get().getLabel());
+            //assertEquals("still there after restart of Jenkins", "Test", CloudEventsConfig.get().getSinkURL());
         });
     }
 
