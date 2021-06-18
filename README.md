@@ -28,7 +28,7 @@ There are 2 usages of this plugin:
        ![Add More Endpoints](public/add_more.png)
 
 2. **Jenkins as a Sink.**
-    1. To use Jenkins as a Sink, simply enter the Jenkins Sink URL as the Sink to send CloudEvents from other systems.
+    1. To use Jenkins as a Sink, enter the Jenkins Sink URL as the Sink to send CloudEvents from other systems.
     2. TODO: Jenkins Sink URL.
 
 
@@ -45,8 +45,3 @@ Report issues and enhancements in the [Jenkins issue tracker](https://issues.jen
 TODO review the default [CONTRIBUTING](https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md) file and make sure it is appropriate for your plugin, if not then add your own one adapted from the base file
 
 Refer to our [contribution guidelines](https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md)
-
-## LICENSE
-
-Licensed under MIT, see [LICENSE](LICENSE.md)
-
