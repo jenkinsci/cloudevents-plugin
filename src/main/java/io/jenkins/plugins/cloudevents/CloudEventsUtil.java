@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Converts POJO to JSON-String.
  */
 
-public class JSONUtil {
+public class CloudEventsUtil {
 
     public static String convertToJson(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();

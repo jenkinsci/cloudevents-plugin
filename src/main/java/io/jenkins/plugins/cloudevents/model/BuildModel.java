@@ -25,6 +25,8 @@ public class BuildModel {
 
     private String displayName;
 
+    private String type;
+
     public String getFullUrl() {
         return fullUrl;
     }

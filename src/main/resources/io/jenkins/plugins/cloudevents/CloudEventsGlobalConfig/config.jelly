@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+   <f:section title="${%CloudEvents Plugin}">
+
+  <f:entry field="sinkType" title="${%Sink Type}">
+    <select name="sinkType">
+      <f:option selected="${instance.sinkType=='http'}" value="http">HTTP Sink</f:option>
+      <f:option selected="${instance.sinkType=='other'}" value="other">Other Sink</f:option>
+    </select>
+  </f:entry>
+
+    <f:entry field="sinkURL" title="${%Sink URL}">
+        <f:textbox field="sinkURL" value="${instance.sinkURL}"/>
+    </f:entry>
+
+    <f:entry title="Job Created" field="created">
+        <f:checkbox checked="${instance.created}"/>
+    </f:entry>
+
+    <f:entry title="Job Updated" field="updated">
+        <f:checkbox checked="${instance.updated}"/>
+    </f:entry>
+
+    <f:entry title="Job Entered Queue" field="enteredWaiting">
+        <f:checkbox default="true" checked="${instance.enteredWaiting}"/>
+    </f:entry>
+
+    <f:entry title="Job Left Queue" field="left">
+        <f:checkbox checked="${instance.left}"/>
+    </f:entry>
+
+    <f:entry title="Job Started" field="started">
+        <f:checkbox checked="${instance.started}"/>
+    </f:entry>
+
+    <f:entry title="Job Completed" field="completed">
+       <f:checkbox checked="${instance.completed}"/>
+    </f:entry>
+
+    <f:entry title="Job Finalized" field="finalized">
+        <f:checkbox checked="${instance.finalized}"/>
+    </f:entry>
+
+    <f:entry title="Job Failed" field="failed">
+        <f:checkbox  checked="${instance.failed}"/>
+    </f:entry>
+
+   </f:section>
+</j:jelly>
