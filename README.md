@@ -2,7 +2,12 @@
 
 ## Introduction
 
-The CloudEvents Plugin for Jenkins allows interoperability between different CI/CD tools by adopting industry-standard specification for events called [CloudEvents](https://cloudevents.io/). By using this plugin in your workflows, you can emit and consume CloudEvents for various events in Jenkins relating to Jenkins objects (jobs, projects, queues, etc).
+The CloudEvents Plugin for Jenkins allows interoperability between different CI/CD tools by adopting industry-standard specification for events called [CloudEvents](https://cloudevents.io/). 
+
+By using this plugin in your workflows, you can emit and consume CloudEvents for various events in Jenkins relating to Jenkins objects (jobs, projects, queues, etc).
+
+The standardization of events by adopting CloudEvents will make it easier to interoperate systems without having to write adapters. 
+
 
 ## Getting started
 
@@ -15,17 +20,15 @@ There are 2 usages of this plugin:
     2. Once you are in Manage Jenkins UI, search for *Configure System* under *System Configuration*. 
         ![Configure System](public/configure_system.png)
        
-    3.  Inside the *Configure System* UI, scroll down to the *CloudEvents Plugin* section. 
-        Here, each block represents an endpoint, which comprises a valid Sink-URL and type of event
-        that URL is configured to receive.
-        - Select HTTP Sink URL.
-        - Select an event from the dropdown which will be sent to the sink you have configured.
-        
-        ![Configure Endpoints](public/add_endpoints.png)
-          
-    4. You can also add more endpoints and configure them similarly. 
-        This way, each endpoint can be configured to receive specific events.
-       ![Add More Endpoints](public/add_more.png)
+    3.  Inside the *Configure System* UI, scroll down to the *CloudEvents Plugin* section and configure the following: 
+        - Select the type of the sink.
+          ![Type of Sink](public/sinkType.png)
+        - Enter the URL of the sink where requests from Jenkins will be routed.
+          ![URL of the SInk](public/sinkURL.png)
+        - Select the events this sink will receive.
+          ![Select event/s](public/events-select.png)
+
+
 
 2. **Jenkins as a Sink.**
     1. To use Jenkins as a Sink, enter the Jenkins Sink URL as the Sink to send CloudEvents from other systems.
