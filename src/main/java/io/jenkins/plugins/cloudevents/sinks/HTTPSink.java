@@ -5,6 +5,7 @@ import io.cloudevents.core.message.MessageWriter;
 import io.cloudevents.core.v1.CloudEventBuilder;
 import io.jenkins.plugins.cloudevents.CloudEventsSink;
 import io.jenkins.plugins.cloudevents.CloudEventsUtil;
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -24,7 +25,7 @@ public class HTTPSink extends CloudEventsSink {
     private static final Logger LOGGER = Logger.getLogger(HTTPSink.class.getName());
 
 
-    private static CloudEvent buildCloudEvent(Object data) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public CloudEvent buildCloudEvent(Object data) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         UUID uuid = UUID.randomUUID();
 
@@ -49,11 +50,12 @@ public class HTTPSink extends CloudEventsSink {
     }
 
     @Override
-    public void sendCloudEvent(String sinkURL, Object data) throws IOException {
+    public void sendCloudEvent(String sinkURL, Object data) throws IOException, NullPointerException {
 
         CloudEvent cloudEventToPost = null;
         try {
             cloudEventToPost = buildCloudEvent(data);
+
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -77,7 +79,5 @@ public class HTTPSink extends CloudEventsSink {
 
         int responseCode = httpUrlConnection.getResponseCode();
         LOGGER.log(Level.INFO, String.format("Received response: %s", responseCode));
-
     }
-
 }

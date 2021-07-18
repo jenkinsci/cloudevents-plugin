@@ -1,0 +1,15 @@
+unclassified:
+  cloudEventsGlobalConfig:
+    sinkType: "http"
+    sinkUrl: "http://my-company.com"
+    completed: true
+    created: true
+    enteredWaiting: true
+    failed: true
+    finalized: true
+    left: true
+    offline: true
+    online: true
+    started: true
+    updated: true
+

@@ -20,9 +20,6 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
     private String sinkType;
     private String sinkURL;
 
-    // TODO: Remove "all" events from set of events.
-    private boolean all;
-
     private boolean created;
     private boolean updated;
     private boolean enteredWaiting;
@@ -31,6 +28,9 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
     private boolean completed;
     private boolean finalized;
     private boolean failed;
+    private boolean online;
+    private boolean offline;
+
 
     private List<String> events;
 
@@ -46,6 +46,8 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
         completed = true;
         finalized = true;
         failed = true;
+        online = true;
+        offline = true;
         events = new ArrayList<>();
     }
 
@@ -72,16 +74,6 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
     @DataBoundSetter
     public void setSinkType(String sinkType) {
         this.sinkType = sinkType;
-    }
-
-    public boolean isAll() {
-        return all;
-    }
-
-    @DataBoundSetter
-    public void setAll(boolean all) {
-        this.all = all;
-        addOrRemoveEvent(all, "all");
     }
 
     public boolean isCreated() {
@@ -165,12 +157,32 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
 
     }
 
+    public boolean isOnline() {
+        return online;
+    }
+
+    @DataBoundSetter
+    public void setOnline(boolean online) {
+        this.online = online;
+        addOrRemoveEvent(online, "online");
+    }
+
+    public boolean isOffline() {
+        return offline;
+    }
+
+    @DataBoundSetter
+    public void setOffline(boolean offline) {
+        this.offline = offline;
+        addOrRemoveEvent(offline, "offline");
+    }
+
     public List<String> getEvents() {
         return events;
     }
 
     /**
-     * If a praticular event is selected in the UI, and the list of events already contains this event do nothing.
+     * If a particular event is selected in the UI, and the list of events already contains this event do nothing.
      * Else, add it to the list.
      * If the event is unselected, remove if from the list of events if it is an element inside the list.
      *
@@ -179,11 +191,6 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
      */
     private void addOrRemoveEvent(boolean event, String stringEvent) {
         if (event) {
-            if (this.all) {
-                events = new ArrayList<>();
-                events.add("all");
-                return;
-            }
             if (events.contains(stringEvent)) {
                 return;
             } else {
@@ -197,19 +204,19 @@ public class CloudEventsGlobalConfig extends GlobalConfiguration {
         }
     }
 
-    // TODO: Move validation to check for different sink types
+    // TODO: Move validation to check for different sink types.
     public FormValidation doCheckSinkURL(@QueryParameter(value = "sinkURL") String sinkURL) {
-            if (sinkURL == null || sinkURL.isEmpty()) {
-                return FormValidation.error("Provide valid Sink URL. " +
-                        "For ex: \"http://ci.mycompany.com/api/steps\"");
-            }
-            if (validateProtocolUsed(sinkURL))
-                return FormValidation.error(PROTOCOL_ERROR_MESSAGE);
-            return FormValidation.ok();
+        if (sinkURL == null || sinkURL.isEmpty()) {
+            return FormValidation.error("Provide valid Sink URL. " +
+                    "For ex: \"http://ci.mycompany.com/api/steps\"");
+        }
+        if (validateProtocolUsed(sinkURL))
+            return FormValidation.error(PROTOCOL_ERROR_MESSAGE);
+        return FormValidation.ok();
 
     }
 
-    private boolean validateProtocolUsed(String sinkURL) {
+    public boolean validateProtocolUsed(String sinkURL) {
         return !(sinkURL.startsWith("http://") || sinkURL.startsWith("https://"));
     }
 

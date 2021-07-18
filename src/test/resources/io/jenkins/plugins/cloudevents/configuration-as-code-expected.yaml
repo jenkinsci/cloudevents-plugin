@@ -1,0 +1,15 @@
+completed: true
+created: true
+enteredWaiting: true
+failed: true
+finalized: true
+left: true
+offline: true
+online: true
+sinkType: "http"
+sinkURL: "http://my-company.com"
+started: true
+updated: true
+
+
+

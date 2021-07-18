@@ -10,6 +10,7 @@
     </select>
   </f:entry>
 
+
     <f:entry field="sinkURL" title="${%Sink URL}">
         <f:textbox field="sinkURL" value="${instance.sinkURL}"/>
     </f:entry>
@@ -44,6 +45,14 @@
 
     <f:entry title="Job Failed" field="failed">
         <f:checkbox  checked="${instance.failed}"/>
+    </f:entry>
+
+    <f:entry title="Computer Online" field="online">
+        <f:checkbox  checked="${instance.online}"/>
+    </f:entry>
+
+    <f:entry title="Computer Offline" field="offline">
+        <f:checkbox  checked="${instance.offline}"/>
     </f:entry>
 
    </f:section>

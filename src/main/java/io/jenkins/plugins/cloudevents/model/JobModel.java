@@ -1,6 +1,7 @@
 package io.jenkins.plugins.cloudevents.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
 
@@ -12,14 +13,8 @@ public class JobModel implements Model {
 
     private String userName;
 
-    private Date createdDate;
-
-    private Date updatedDate;
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String status;
-
-    @JsonIgnore
-    private String stage;
 
     private String name;
 
@@ -27,7 +22,21 @@ public class JobModel implements Model {
 
     private String url;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private BuildModel build;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Date createdDate;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Date updatedDate;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String configFile;
+
+    @JsonIgnore
+    private String stage;
+
 
     public String getName() {
         return name;
@@ -109,6 +118,14 @@ public class JobModel implements Model {
         this.stage = stage;
     }
 
+    public String getConfigFile() {
+        return configFile;
+    }
+
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
+    }
+
     @JsonIgnore
     @Override
     public String getSource() {
@@ -128,6 +145,7 @@ public class JobModel implements Model {
         } else {
             return JENKINS_SOURCE + this.getStatus().toLowerCase();
         }
+
     }
 
 }

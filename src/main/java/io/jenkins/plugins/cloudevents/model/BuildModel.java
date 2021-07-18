@@ -2,6 +2,8 @@ package io.jenkins.plugins.cloudevents.model;
 
 import io.jenkins.plugins.cloudevents.Stage;
 
+import java.util.Map;
+
 /**
  * Represents the data to be sent for each build of a Job.
  */
@@ -25,7 +27,9 @@ public class BuildModel {
 
     private String displayName;
 
-    private String type;
+    private Map<String, String> parameters;
+
+    private ScmState scmState;
 
     public String getFullUrl() {
         return fullUrl;
@@ -40,6 +44,9 @@ public class BuildModel {
     }
 
     public void setNumber(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.number = number;
     }
 
@@ -48,6 +55,9 @@ public class BuildModel {
     }
 
     public void setQueueId(long queueId) {
+        if (queueId <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.queueId = queueId;
     }
 
@@ -97,5 +107,21 @@ public class BuildModel {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public Map<String, String> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Map<String, String> parameters) {
+        this.parameters = parameters;
+    }
+
+    public ScmState getScmState() {
+        return scmState;
+    }
+
+    public void setScmState(ScmState scmState) {
+        this.scmState = scmState;
     }
 }
