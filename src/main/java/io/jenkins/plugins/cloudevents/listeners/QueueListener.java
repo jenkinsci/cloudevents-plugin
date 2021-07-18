@@ -8,11 +8,11 @@ import io.jenkins.plugins.cloudevents.Stage;
 public class QueueListener extends hudson.model.queue.QueueListener {
     @Override
     public void onEnterWaiting(Queue.WaitingItem wi) {
-       Stage.ENTERED_WAITING.handleQueue(wi);
+        Stage.ENTERED_WAITING.handleEvent(wi, "queue");
     }
 
     @Override
     public void onLeft(Queue.LeftItem li) {
-        Stage.LEFT.handleQueue(li);
+        Stage.LEFT.handleEvent(li, "queue");
     }
 }

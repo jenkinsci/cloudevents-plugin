@@ -1,5 +1,6 @@
 package io.jenkins.plugins.cloudevents.model;
 
+
 public class QueueCauseModel {
     private String reasonForWaiting;
 
