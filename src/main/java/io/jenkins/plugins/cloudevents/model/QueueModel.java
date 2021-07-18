@@ -1,6 +1,7 @@
 package io.jenkins.plugins.cloudevents.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,10 +25,9 @@ public class QueueModel implements Model {
 
     private String status;
 
-    private int contextId;
-
     private long duration;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<QueueCauseModel> queueCauses;
 
 
@@ -40,7 +40,6 @@ public class QueueModel implements Model {
         this.jenkinsQueueId = 0;
         this.status = "";
         this.duration = 0;
-        this.contextId = 0;
         this.queueCauses = new ArrayList<>();
     }
 
@@ -81,6 +80,9 @@ public class QueueModel implements Model {
     }
 
     public void setJenkinsQueueId(int jenkinsQueueId) {
+        if (jenkinsQueueId <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.jenkinsQueueId = jenkinsQueueId;
     }
 
@@ -90,14 +92,6 @@ public class QueueModel implements Model {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getContextId() {
-        return contextId;
-    }
-
-    public void setContextId(int contextId) {
-        this.contextId = contextId;
     }
 
     public long getDuration() {
@@ -116,6 +110,10 @@ public class QueueModel implements Model {
         this.queueCauses = queueCauses;
     }
 
+    public void addQueueCause(QueueCauseModel queueCauseModel) {
+        this.queueCauses.add(queueCauseModel);
+    }
+
     public String getDisplayName() {
         return displayName;
     }
@@ -126,7 +124,7 @@ public class QueueModel implements Model {
 
     @JsonIgnore
     @Override
-    public String getSource(){
+    public String getSource() {
         return String.format("job/%s", this.getDisplayName());
     }
 

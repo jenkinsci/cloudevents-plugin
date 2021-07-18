@@ -5,8 +5,9 @@ import hudson.Extension;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import hudson.model.listeners.RunListener;
-import io.jenkins.plugins.cloudevents.CloudEventsGlobalConfig;
 import io.jenkins.plugins.cloudevents.Stage;
+
+import java.util.Date;
 
 
 /**
@@ -21,16 +22,16 @@ public class JobListener extends RunListener<Run> {
 
     @Override
     public void onCompleted(Run run, @NonNull TaskListener listener) {
-        Stage.COMPLETED.handleBuild(run, listener, run.getTimeInMillis() + run.getDuration());
+        Stage.COMPLETED.handleEvent(run, listener, run.getTimeInMillis() + run.getDuration());
     }
 
     @Override
     public void onFinalized(Run run) {
-        Stage.FINALIZED.handleBuild(run, TaskListener.NULL, System.currentTimeMillis());
+        Stage.FINALIZED.handleEvent(run, TaskListener.NULL, System.currentTimeMillis());
     }
 
     @Override
     public void onStarted(Run run, TaskListener listener) {
-        Stage.STARTED.handleBuild(run, listener, run.getTimeInMillis());
+        Stage.STARTED.handleEvent(run, listener, run.getTimeInMillis());
     }
 }

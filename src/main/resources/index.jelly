@@ -1,4 +1,5 @@
 <?jelly escape-by-default='true'?>
 <div>
-    TODO
+    This plugin allows Jenkins to be configured as a Source and a Sink to send
+    and receive CloudEvents respectively.
 </div>
