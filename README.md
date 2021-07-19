@@ -390,8 +390,9 @@ Node Events
          "connectTime": 0
         }
         ```
+     
+---------------------
 
-   
 Issues
 ==========
 
@@ -399,6 +400,8 @@ TODO Decide where you're going to host your issues, the default is Jenkins JIRA,
 If you use GitHub issues there's no need for this section; else add the following line:
 
 Report issues and enhancements in the [Jenkins issue tracker](https://issues.jenkins-ci.org/).
+
+-------------
 
 Contributing
 ==========
