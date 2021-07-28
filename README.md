@@ -2,6 +2,19 @@ CloudEvents-Plugin
 ======================================
 -------
 
+Table of Contents
+=====================================
+
+   * [Introduction](#introduction)
+   * [Getting Started](#getting-started)
+   * [Events Documentation for Jenkins as Source](#events-documentation-for-jenkins-as-source)
+      * [Queue Events](#queue-events)
+      * [Build Events](#build-events)
+      * [Job Events](#job-events)
+      * [Node Events](#node-events)
+   * [Issues](#issues)
+   * [Contributing](#contributing)
+
 Introduction
 ======================================
 
@@ -16,7 +29,7 @@ write adapters.
 
 -------
 
-Getting started
+Getting Started
 ==============
 
 There are 2 usages of this plugin:
