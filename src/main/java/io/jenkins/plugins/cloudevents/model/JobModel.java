@@ -37,7 +37,6 @@ public class JobModel implements Model {
     @JsonIgnore
     private String stage;
 
-
     public String getName() {
         return name;
     }
@@ -87,19 +86,21 @@ public class JobModel implements Model {
     }
 
     public Date getCreatedDate() {
-        return createdDate;
+        Date date = this.createdDate;
+        return date;
     }
 
     public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+        this.createdDate = (Date) createdDate.clone();
     }
 
     public Date getUpdatedDate() {
-        return updatedDate;
+        Date date = this.updatedDate;
+        return date;
     }
 
     public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+        this.updatedDate = (Date) updatedDate.clone();
     }
 
     public String getStatus() {

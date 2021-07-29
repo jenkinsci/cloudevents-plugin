@@ -5,7 +5,7 @@ import hudson.model.Queue;
 import io.jenkins.plugins.cloudevents.Stage;
 
 @Extension
-public class QueueListener extends hudson.model.queue.QueueListener {
+public class CE_QueueListener extends hudson.model.queue.QueueListener {
     @Override
     public void onEnterWaiting(Queue.WaitingItem wi) {
         Stage.ENTERED_WAITING.handleEvent(wi, "queue");

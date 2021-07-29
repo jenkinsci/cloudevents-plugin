@@ -5,9 +5,9 @@ import hudson.model.Item;
 import io.jenkins.plugins.cloudevents.Stage;
 
 @Extension
-public class ItemListener extends hudson.model.listeners.ItemListener {
+public class CE_ItemListener extends hudson.model.listeners.ItemListener {
 
-    public ItemListener() {
+    public CE_ItemListener() {
     }
 
     @Override

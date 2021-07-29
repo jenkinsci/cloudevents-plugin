@@ -52,19 +52,25 @@ public class QueueModel implements Model {
     }
 
     public Date getEntryTime() {
-        return entryTime;
+        return (Date) entryTime.clone();
     }
 
     public void setEntryTime(Date entryTime) {
-        this.entryTime = entryTime;
+        this.entryTime = (Date) entryTime.clone();
     }
 
     public Date getExitTime() {
-        return exitTime;
+        return (Date) exitTime.clone();
     }
 
+
     public void setExitTime(Date exitTime) {
-        this.exitTime = exitTime;
+        try {
+            this.exitTime = (Date) exitTime.clone();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
     }
 
     public String getStartedBy() {
