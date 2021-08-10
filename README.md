@@ -409,16 +409,12 @@ Node Events
 Issues
 ==========
 
-TODO Decide where you're going to host your issues, the default is Jenkins JIRA, but you can also enable GitHub issues,
-If you use GitHub issues there's no need for this section; else add the following line:
-
-Report issues and enhancements in the [Jenkins issue tracker](https://issues.jenkins-ci.org/).
+If you are facing any issues with the plugin, please feel free to open a new issue inside the [Issues](https://github.com/jenkinsci/cloudevents-plugin/issues) tab under 
+this repository. We love feedback, and if you would like to share any feedback you have with us, you can submit your feedback using the same procedure.
 
 -------------
 
 Contributing
 ==========
 
-TODO review the default [CONTRIBUTING](https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md) file and make sure it is appropriate for your plugin, if not then add your own one adapted from the base file
-
-Refer to our [contribution guidelines](https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md)
+If we would like to contribute to this plugin, refer to our [contribution guidelines](https://github.com/jenkinsci/.github/blob/master/CONTRIBUTING.md)
