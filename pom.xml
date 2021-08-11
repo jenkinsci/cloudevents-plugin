@@ -11,11 +11,11 @@
 
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>cloudevents</artifactId>
-    <version>${revision}${changelist}</version>
+    <version>1.0.0</version>
     <packaging>hpi</packaging>
 
     <properties>
-        <revision>1.0.1</revision>
+        <revision>1.0.0</revision>
         <changelist>-SNAPSHOT</changelist>
         <jenkins.version>2.277.4</jenkins.version>
         <java.level>8</java.level>
