@@ -1,0 +1,12 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: cdevents-trigger
+  namespace: knative-eventing
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: org.jenkinsci.queue.entered_waiting
+  subscriber:
+    uri: http://ad159ada4a01042bf8ea1f3b773f165b-e5708344b9709abf.elb.us-west-1.amazonaws.com/
