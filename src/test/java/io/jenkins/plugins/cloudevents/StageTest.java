@@ -2,10 +2,10 @@ package io.jenkins.plugins.cloudevents;
 
 import hudson.model.*;
 import hudson.slaves.OfflineCause;
-import io.jenkins.plugins.cloudevents.listeners.ItemListener;
-import io.jenkins.plugins.cloudevents.listeners.JobListener;
-import io.jenkins.plugins.cloudevents.listeners.NodeListener;
-import io.jenkins.plugins.cloudevents.listeners.QueueListener;
+import io.jenkins.plugins.cloudevents.listeners.CE_ItemListener;
+import io.jenkins.plugins.cloudevents.listeners.CE_JobListener;
+import io.jenkins.plugins.cloudevents.listeners.CE_NodeListener;
+import io.jenkins.plugins.cloudevents.listeners.CE_QueueListener;
 import io.jenkins.plugins.cloudevents.model.JobModel;
 import io.jenkins.plugins.cloudevents.model.NodeModel;
 import io.jenkins.plugins.cloudevents.model.QueueModel;
@@ -164,7 +164,7 @@ public class StageTest {
             TaskListener taskListener = mock(TaskListener.class);
             Job job = mock(Job.class);
             JobModel jobModel = mock(JobModel.class);
-            JobListener jobListener = mock(JobListener.class);
+            CE_JobListener jobListener = mock(CE_JobListener.class);
             Stage started = mock(Stage.STARTED.getClass());
             Stage completed = mock(Stage.COMPLETED.getClass());
             Stage finalized = mock(Stage.FINALIZED.getClass());
@@ -229,7 +229,7 @@ public class StageTest {
 
             Item item = mock(Item.class);
 
-            ItemListener itemListener = mock(ItemListener.class);
+            CE_ItemListener itemListener = mock(CE_ItemListener.class);
 
             // On Created
             Mockito.doAnswer(invocationOnMock -> {
@@ -268,7 +268,7 @@ public class StageTest {
             Computer computer = mock(Computer.class);
             TaskListener taskListener = mock(TaskListener.class);
             OfflineCause offlineCause = mock(OfflineCause.class);
-            NodeListener nodeListener = mock(NodeListener.class);
+            CE_NodeListener nodeListener = mock(CE_NodeListener.class);
 
             // Computer Online
             Mockito.doAnswer(invocationOnMock -> {
@@ -308,7 +308,7 @@ public class StageTest {
             QueueModel queueModel = mock(QueueModel.class);
             Queue.WaitingItem queueWaitingItem = mock(Queue.WaitingItem.class);
             Queue.LeftItem queueLeftItem = mock(Queue.LeftItem.class);
-            QueueListener queueListener = mock(QueueListener.class);
+            CE_QueueListener queueListener = mock(CE_QueueListener.class);
 
             // Queue Entered Waiting
             Mockito.doAnswer(invocationOnMock -> {

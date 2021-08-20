@@ -1,6 +1,8 @@
 package io.jenkins.plugins.cloudevents.sinks;
 
 import io.cloudevents.CloudEvent;
+import io.cloudevents.CloudEventData;
+import io.cloudevents.SpecVersion;
 import io.cloudevents.core.message.MessageWriter;
 import io.cloudevents.core.v1.CloudEventBuilder;
 import io.jenkins.plugins.cloudevents.CloudEventsSink;
@@ -14,6 +16,8 @@ import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.time.OffsetDateTime;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +56,67 @@ public class HTTPSink extends CloudEventsSink {
     @Override
     public void sendCloudEvent(String sinkURL, Object data) throws IOException, NullPointerException {
 
-        CloudEvent cloudEventToPost = null;
+        CloudEvent cloudEventToPost = new CloudEvent() {
+            @Override
+            public CloudEventData getData() {
+                return null;
+            }
+
+            @Override
+            public SpecVersion getSpecVersion() {
+                return null;
+            }
+
+            @Override
+            public String getId() {
+                return null;
+            }
+
+            @Override
+            public String getType() {
+                return null;
+            }
+
+            @Override
+            public URI getSource() {
+                return null;
+            }
+
+            @Override
+            public String getDataContentType() {
+                return null;
+            }
+
+            @Override
+            public URI getDataSchema() {
+                return null;
+            }
+
+            @Override
+            public String getSubject() {
+                return null;
+            }
+
+            @Override
+            public OffsetDateTime getTime() {
+                return null;
+            }
+
+            @Override
+            public Object getAttribute(String s) throws IllegalArgumentException {
+                return null;
+            }
+
+            @Override
+            public Object getExtension(String s) {
+                return null;
+            }
+
+            @Override
+            public Set<String> getExtensionNames() {
+                return null;
+            }
+        };
         try {
             cloudEventToPost = buildCloudEvent(data);
 

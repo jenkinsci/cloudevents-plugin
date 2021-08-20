@@ -1,0 +1,53 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: cdevent-jenkins-tekton-trigger-template
+  namespace: cdevents
+spec:
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: TaskRun
+    metadata:
+      generateName: jenkins-to-tekton-task-run-
+    spec:
+      serviceAccountName: runner
+      taskRef:
+        name: jenkins-to-tekton-echo-task
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: jenkins-to-tekton-echo-task
+  namespace: cdevents
+spec:
+  steps:
+    - image: ubuntu
+      command:
+        - echo
+      args:
+        - "Hello, Shruti!"
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: getting-started-taskrunbinding
+  namespace: cdevents
+spec:
+  params:
+    - name: jobname
+      value: $(header.ce-type)
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: cdevent-listener
+  namespace: cdevents
+spec:
+  serviceAccountName: cdevent-listener
+  triggers:
+      - bindings:
+        - ref: getting-started-taskrunbinding
+        template:
+          ref: cdevent-jenkins-tekton-trigger-template
+  namespaceSelector:
+    matchNames: ['cdevents']

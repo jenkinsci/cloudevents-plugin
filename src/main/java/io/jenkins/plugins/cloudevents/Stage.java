@@ -74,6 +74,9 @@ public enum Stage {
                             NodeModel nodeModel = buildNodeModel((Computer) o);
                             sendObject = nodeModel;
                             break;
+
+                        default:
+                            break;
                     }
 
                     if (CloudEventsGlobalConfig.get().getSinkType().equals("http")) {
@@ -217,6 +220,9 @@ public enum Stage {
                 queueModel.setEntryTime(new Date(item.getInQueueSince()));
                 queueModel.setExitTime(new Date());
                 break;
+
+            default:
+                break;
         }
 
 
@@ -228,8 +234,16 @@ public enum Stage {
     public NodeModel buildNodeModel(Computer computer) throws IOException, InterruptedException {
         NodeModel nodeModel = new NodeModel();
 
+
         nodeModel.setNumExecutors(computer.getNumExecutors());
-        nodeModel.setNodeName(computer.getNode().getNodeName());
+
+        Node node = computer.getNode();
+        if (node != null) {
+            String nodeName = node.getNodeName();
+            nodeModel.setNodeName(nodeName);
+        }
+
+
         nodeModel.setCachedHostName(computer.getHostName());
         nodeModel.setConnectTime(computer.getConnectTime());
 
@@ -240,6 +254,9 @@ public enum Stage {
 
             case OFFLINE:
                 nodeModel.setStatus("offline");
+                break;
+
+            default:
                 break;
         }
 

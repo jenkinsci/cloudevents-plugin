@@ -14,9 +14,9 @@ import java.util.Date;
  * Class which implements RunListener and responds to events relating to run of a job.
  */
 @Extension
-public class JobListener extends RunListener<Run> {
+public class CE_JobListener extends RunListener<Run> {
 
-    public JobListener() {
+    public CE_JobListener() {
         super(Run.class);
     }
 

@@ -45,7 +45,12 @@ public class NodeModel implements Model {
     }
 
     public void setNodeName(String nodeName) {
-        this.nodeName = nodeName;
+        try{
+            this.nodeName = nodeName;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
     }
 
     public String getCachedHostName() {

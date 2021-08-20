@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: my-service-trigger
+  namespace: knative-eventing
+  annotations:
+     kafka.eventing.knative.dev/delivery.order: ordered
+spec:
+  broker: kafka-broker
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
+      namespace: default
