@@ -11,9 +11,9 @@ import io.jenkins.plugins.cloudevents.Stage;
 import java.io.IOException;
 
 @Extension
-public class NodeListener extends ComputerListener {
+public class CENodeListener extends ComputerListener {
 
-    public NodeListener() {
+    public CENodeListener() {
         super();
     }
 

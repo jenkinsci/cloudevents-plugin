@@ -74,6 +74,9 @@ public enum Stage {
                             NodeModel nodeModel = buildNodeModel((Computer) o);
                             sendObject = nodeModel;
                             break;
+
+                        default:
+                            break;
                     }
 
                     if (CloudEventsGlobalConfig.get().getSinkType().equals("http")) {
@@ -206,7 +209,6 @@ public enum Stage {
         switch (this) {
             case ENTERED_WAITING:
                 queueModel.setEntryTime(new Date());
-                queueModel.setExitTime(null);
                 if (item.getCauseOfBlockage() != null) {
                     addWaitingCause(item, queueModel);
                 }
@@ -216,6 +218,9 @@ public enum Stage {
                 queueModel.setDuration(System.currentTimeMillis() - item.getInQueueSince());
                 queueModel.setEntryTime(new Date(item.getInQueueSince()));
                 queueModel.setExitTime(new Date());
+                break;
+
+            default:
                 break;
         }
 
@@ -227,27 +232,49 @@ public enum Stage {
 
     public NodeModel buildNodeModel(Computer computer) throws IOException, InterruptedException {
         NodeModel nodeModel = new NodeModel();
+        String nodeName = null;
+        String hostName = null;
+        Long connectTime = null;
 
-        nodeModel.setNumExecutors(computer.getNumExecutors());
-        nodeModel.setNodeName(computer.getNode().getNodeName());
-        nodeModel.setCachedHostName(computer.getHostName());
-        nodeModel.setConnectTime(computer.getConnectTime());
+        if (computer != null) {
+            hostName = computer.getHostName();
+            connectTime = computer.getConnectTime();
+    
+            if (computer.getNode() != null) {
+                Node node = computer.getNode();
+                if (node != null) {
+                    nodeName = node.getNodeName();
+                    if (nodeName != null) {
+                        nodeModel.setNodeName(nodeName);
+                    }
+                }
+            }
+            if (!hostName.isEmpty()) {
+                nodeModel.setCachedHostName(hostName);
+            }
+            if (connectTime != null) {
+                nodeModel.setConnectTime(connectTime);
+            }
 
-        switch (this) {
-            case ONLINE:
-                nodeModel.setStatus("online");
-                break;
-
-            case OFFLINE:
-                nodeModel.setStatus("offline");
-                break;
+            switch (this) {
+                case ONLINE:
+                    nodeModel.setStatus("online");
+                    break;
+    
+                case OFFLINE:
+                    nodeModel.setStatus("offline");
+                    break;
+    
+                default:
+                    break;
+            }
+    
+            if (computer.isOffline()) {
+                nodeModel.setOfflineCause(computer.getOfflineCause());
+                nodeModel.setTerminatedBy(computer.getTerminatedBy());
+            }
         }
-
-        if (computer.isOffline()) {
-            nodeModel.setOfflineCause(computer.getOfflineCause());
-            nodeModel.setTerminatedBy(computer.getTerminatedBy());
-        }
-
+        
         return nodeModel;
     }
 

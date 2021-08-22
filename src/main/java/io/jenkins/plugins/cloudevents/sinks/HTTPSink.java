@@ -72,7 +72,9 @@ public class HTTPSink extends CloudEventsSink {
             httpUrlConnection.setDoInput(true);
 
             MessageWriter messageWriter = createMessageWriter(httpUrlConnection);
-            messageWriter.writeBinary(cloudEventToPost);
+            if (cloudEventToPost != null){
+                messageWriter.writeBinary(cloudEventToPost);
+            }
         } catch (ProtocolException e) {
             e.printStackTrace();
         }
