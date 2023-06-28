@@ -62,12 +62,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.mashape.unirest</groupId>
-            <artifactId>unirest-java</artifactId>
-            <version>1.4.9</version>
-        </dependency>
-
         <!-- CloudEvents package to create and process CloudEvents and interfaces to deal with protocol and event-format binding -->
         <dependency>
             <groupId>io.cloudevents</groupId>
@@ -94,14 +88,6 @@
             <optional>true</optional>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20190722</version>
-        </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -123,22 +109,6 @@
             <version>2.13.0</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-module-junit4</artifactId>
-            <version>2.0.9</version>
-            <scope>test</scope>
-        </dependency>
-
-
-        <!--<dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>5.7.2</version>
-            <scope>test</scope>
-        </dependency> -->
 
         <dependency>
             <groupId>io.jenkins.plugins</groupId>
